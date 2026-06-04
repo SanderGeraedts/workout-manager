@@ -30,7 +30,15 @@ workoutsRouter.get("/:id", async (c) => {
   const id = Number(c.req.param("id"));
   const workout = await db.query.workouts.findFirst({
     where: eq(workouts.id, id),
-    with: { exercises: true },
+    with: {
+      exercises: {
+        with: {
+          exercise: {
+            with: { muscles: true },
+          },
+        },
+      },
+    },
   });
 
   if (!workout) {

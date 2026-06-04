@@ -17,13 +17,19 @@ export function SortableExerciseRow({
   onRemove,
 }: SortableExerciseRowProps) {
   const [expanded, setExpanded] = useState(false);
-  const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
-    useSortable({ id: row.id });
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: row.id });
 
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
-    opacity: isDragging ? 0.5 : 1,
+    opacity: isDragging ? 0.4 : 1,
   };
 
   const summary =
@@ -31,30 +37,40 @@ export function SortableExerciseRow({
       ? `${row.sets} sets × ${row.reps ?? "?"} reps · ${row.restSeconds}s rest`
       : `${row.sets} sets × ${row.durationSeconds ?? "?"}s · ${row.restSeconds}s rest`;
 
+  const inputCls =
+    "bg-white border border-stone-200 text-stone-900 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition";
+
   return (
     <div
       ref={setNodeRef}
       style={style}
-      className="bg-gray-800 border border-gray-700 rounded-lg overflow-hidden"
+      className={`bg-stone-50 border rounded-xl overflow-hidden transition-shadow ${
+        isDragging ? "shadow-lg border-orange-300" : "border-stone-200"
+      }`}
     >
-      {/* Header row */}
+      {/* Header */}
       <div className="flex items-center gap-3 px-4 py-3">
         {/* Drag handle */}
         <button
           {...attributes}
           {...listeners}
-          className="text-gray-500 hover:text-gray-300 cursor-grab active:cursor-grabbing touch-none"
+          className="text-stone-300 hover:text-stone-500 cursor-grab active:cursor-grabbing touch-none text-lg"
           aria-label="Drag to reorder"
         >
           ⠿
         </button>
 
-        <span className="flex-1 font-medium text-white">{row.exerciseName}</span>
-        <span className="text-sm text-gray-400 hidden sm:block">{summary}</span>
+        <span className="flex-1 font-semibold text-stone-900 text-sm truncate">
+          {row.exerciseName}
+        </span>
+
+        <span className="text-xs text-stone-400 hidden sm:block shrink-0">
+          {summary}
+        </span>
 
         <button
           onClick={() => setExpanded((v) => !v)}
-          className="text-gray-400 hover:text-white text-sm px-2"
+          className="text-stone-400 hover:text-stone-700 text-xs px-2 py-1 rounded-lg hover:bg-stone-200 transition-colors"
           aria-label={expanded ? "Collapse" : "Expand"}
         >
           {expanded ? "▲" : "▼"}
@@ -62,7 +78,7 @@ export function SortableExerciseRow({
 
         <button
           onClick={() => onRemove(row.id)}
-          className="text-red-500 hover:text-red-400 text-lg leading-none"
+          className="text-stone-300 hover:text-red-500 transition-colors text-xl leading-none"
           aria-label="Remove exercise"
         >
           ×
@@ -71,21 +87,21 @@ export function SortableExerciseRow({
 
       {/* Expanded controls */}
       {expanded && (
-        <div className="px-4 pb-4 flex flex-wrap gap-4 border-t border-gray-700 pt-3">
-          {/* Sets */}
-          <label className="flex flex-col gap-1 text-sm text-gray-400">
+        <div className="px-4 pb-4 flex flex-wrap gap-4 border-t border-stone-200 pt-4 bg-white">
+          <label className="flex flex-col gap-1.5 text-xs font-semibold text-stone-500 uppercase tracking-wide">
             Sets
             <input
               type="number"
               min={1}
               value={row.sets}
-              onChange={(e) => onUpdate(row.id, { sets: Number(e.target.value) })}
-              className="bg-gray-700 text-white rounded px-2 py-1 w-16 focus:outline-none focus:ring-1 focus:ring-green-500"
+              onChange={(e) =>
+                onUpdate(row.id, { sets: Number(e.target.value) })
+              }
+              className={`${inputCls} w-16`}
             />
           </label>
 
-          {/* Mode toggle */}
-          <label className="flex flex-col gap-1 text-sm text-gray-400">
+          <label className="flex flex-col gap-1.5 text-xs font-semibold text-stone-500 uppercase tracking-wide">
             Mode
             <select
               value={row.mode}
@@ -99,27 +115,28 @@ export function SortableExerciseRow({
                       : null,
                 })
               }
-              className="bg-gray-700 text-white rounded px-2 py-1 focus:outline-none focus:ring-1 focus:ring-green-500"
+              className={inputCls}
             >
               <option value="reps">Reps</option>
               <option value="duration">Duration</option>
             </select>
           </label>
 
-          {/* Reps or Duration */}
           {row.mode === "reps" ? (
-            <label className="flex flex-col gap-1 text-sm text-gray-400">
+            <label className="flex flex-col gap-1.5 text-xs font-semibold text-stone-500 uppercase tracking-wide">
               Reps
               <input
                 type="number"
                 min={1}
                 value={row.reps ?? ""}
-                onChange={(e) => onUpdate(row.id, { reps: Number(e.target.value) })}
-                className="bg-gray-700 text-white rounded px-2 py-1 w-16 focus:outline-none focus:ring-1 focus:ring-green-500"
+                onChange={(e) =>
+                  onUpdate(row.id, { reps: Number(e.target.value) })
+                }
+                className={`${inputCls} w-16`}
               />
             </label>
           ) : (
-            <label className="flex flex-col gap-1 text-sm text-gray-400">
+            <label className="flex flex-col gap-1.5 text-xs font-semibold text-stone-500 uppercase tracking-wide">
               Duration (s)
               <input
                 type="number"
@@ -128,13 +145,12 @@ export function SortableExerciseRow({
                 onChange={(e) =>
                   onUpdate(row.id, { durationSeconds: Number(e.target.value) })
                 }
-                className="bg-gray-700 text-white rounded px-2 py-1 w-20 focus:outline-none focus:ring-1 focus:ring-green-500"
+                className={`${inputCls} w-20`}
               />
             </label>
           )}
 
-          {/* Rest */}
-          <label className="flex flex-col gap-1 text-sm text-gray-400">
+          <label className="flex flex-col gap-1.5 text-xs font-semibold text-stone-500 uppercase tracking-wide">
             Rest (s)
             <input
               type="number"
@@ -143,7 +159,7 @@ export function SortableExerciseRow({
               onChange={(e) =>
                 onUpdate(row.id, { restSeconds: Number(e.target.value) })
               }
-              className="bg-gray-700 text-white rounded px-2 py-1 w-20 focus:outline-none focus:ring-1 focus:ring-green-500"
+              className={`${inputCls} w-20`}
             />
           </label>
         </div>

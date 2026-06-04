@@ -48,8 +48,8 @@ export function WorkoutBuilder({
   };
 
   return (
-    <div className="bg-gray-900 rounded-xl p-6 flex flex-col gap-4">
-      <h2 className="text-xl font-semibold text-white">Workout Details</h2>
+    <div className="bg-white border border-stone-200 rounded-2xl p-6 flex flex-col gap-5">
+      <h2 className="text-xl font-extrabold text-stone-900">Workout Details</h2>
 
       <div className="flex flex-col gap-3">
         <input
@@ -57,46 +57,50 @@ export function WorkoutBuilder({
           placeholder="Workout name *"
           value={workoutName}
           onChange={(e) => onNameChange(e.target.value)}
-          className="bg-gray-800 border border-gray-700 text-white placeholder-gray-500 rounded-lg px-4 py-2 focus:outline-none focus:border-green-500"
+          className="border border-stone-200 bg-stone-50 text-stone-900 placeholder-stone-400 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition text-sm font-medium"
         />
         <textarea
           placeholder="Description (optional)"
           value={description}
           onChange={(e) => onDescriptionChange(e.target.value)}
           rows={2}
-          className="bg-gray-800 border border-gray-700 text-white placeholder-gray-500 rounded-lg px-4 py-2 focus:outline-none focus:border-green-500 resize-none"
+          className="border border-stone-200 bg-stone-50 text-stone-900 placeholder-stone-400 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition text-sm resize-none"
         />
       </div>
 
-      <h2 className="text-xl font-semibold text-white mt-2">Exercises</h2>
+      <div className="border-t border-stone-100 pt-4">
+        <h3 className="text-sm font-bold text-stone-500 uppercase tracking-widest mb-4">
+          Exercises
+        </h3>
 
-      {exercises.length === 0 ? (
-        <p className="text-gray-500 text-center py-8">
-          No exercises added yet. Browse and add exercises below.
-        </p>
-      ) : (
-        <DndContext
-          sensors={sensors}
-          collisionDetection={closestCenter}
-          onDragEnd={handleDragEnd}
-        >
-          <SortableContext
-            items={exercises.map((e) => e.id)}
-            strategy={verticalListSortingStrategy}
+        {exercises.length === 0 ? (
+          <div className="border-2 border-dashed border-stone-200 rounded-xl py-10 text-center text-stone-400 text-sm">
+            No exercises yet — add some from the browser below.
+          </div>
+        ) : (
+          <DndContext
+            sensors={sensors}
+            collisionDetection={closestCenter}
+            onDragEnd={handleDragEnd}
           >
-            <div className="flex flex-col gap-2">
-              {exercises.map((row) => (
-                <SortableExerciseRow
-                  key={row.id}
-                  row={row}
-                  onUpdate={onUpdate}
-                  onRemove={onRemove}
-                />
-              ))}
-            </div>
-          </SortableContext>
-        </DndContext>
-      )}
+            <SortableContext
+              items={exercises.map((e) => e.id)}
+              strategy={verticalListSortingStrategy}
+            >
+              <div className="flex flex-col gap-2">
+                {exercises.map((row) => (
+                  <SortableExerciseRow
+                    key={row.id}
+                    row={row}
+                    onUpdate={onUpdate}
+                    onRemove={onRemove}
+                  />
+                ))}
+              </div>
+            </SortableContext>
+          </DndContext>
+        )}
+      </div>
     </div>
   );
 }

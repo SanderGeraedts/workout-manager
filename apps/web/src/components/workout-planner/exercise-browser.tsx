@@ -34,10 +34,15 @@ export function ExerciseBrowser({
   });
 
   return (
-    <div className="bg-gray-900 rounded-xl p-6">
-      <h2 className="text-xl font-semibold text-white mb-4">Exercise Browser</h2>
+    <div className="bg-white border border-stone-200 rounded-2xl p-6">
+      <h2 className="text-xl font-extrabold text-stone-900 mb-1">
+        Exercise Browser
+      </h2>
+      <p className="text-sm text-stone-400 mb-6">
+        Click a muscle on the body map to filter, or search by name.
+      </p>
       <div className="flex flex-col lg:flex-row gap-6">
-        <div className="flex-1">
+        <div className="flex-1 min-w-0">
           <ExerciseList
             exercises={filtered}
             searchQuery={searchQuery}
@@ -45,7 +50,7 @@ export function ExerciseBrowser({
             onAddExercise={onAddExercise}
           />
         </div>
-        <div className="lg:w-80">
+        <div className="lg:w-72 shrink-0">
           <MuscleMap
             exercises={exercises}
             selectedMuscle={selectedMuscle}

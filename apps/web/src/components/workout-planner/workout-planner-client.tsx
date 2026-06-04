@@ -77,7 +77,8 @@ export function WorkoutPlannerClient() {
             order: row.order,
             sets: row.sets,
             reps: row.mode === "reps" ? row.reps : undefined,
-            durationSeconds: row.mode === "duration" ? row.durationSeconds : undefined,
+            durationSeconds:
+              row.mode === "duration" ? row.durationSeconds : undefined,
             restSeconds: row.restSeconds,
           })),
         }),
@@ -93,7 +94,7 @@ export function WorkoutPlannerClient() {
   return (
     <div className="flex flex-col gap-8">
       {error && (
-        <div className="bg-red-900/50 border border-red-500 text-red-200 px-4 py-3 rounded-lg">
+        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm font-medium">
           {error}
         </div>
       )}
@@ -113,7 +114,7 @@ export function WorkoutPlannerClient() {
         <button
           onClick={handleSave}
           disabled={saving}
-          className="bg-green-600 hover:bg-green-500 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold px-8 py-3 rounded-lg transition-colors"
+          className="bg-orange-500 hover:bg-orange-600 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold px-8 py-3 rounded-full transition-colors shadow-lg shadow-orange-200"
         >
           {saving ? "Saving…" : "Save Workout"}
         </button>
