@@ -19,3 +19,15 @@ export interface WorkoutSession {
   startedAt: string;
   completedAt: string | null;
 }
+
+export interface WorkoutExerciseRow {
+  id: string;
+  exerciseId: number;
+  exerciseName: string;
+  order: number;
+  sets: number;
+  mode: "reps" | "duration";
+  reps: number | null;
+  durationSeconds: number | null;
+  restSeconds: number;
+}
