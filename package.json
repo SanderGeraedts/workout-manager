@@ -8,7 +8,7 @@
     "dev:api": "pnpm --filter @workout-manager/api dev",
     "dev:web": "pnpm --filter web dev",
     "build": "pnpm -r build",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "pnpm --filter @workout-manager/api test",
     "db:generate": "pnpm --filter @workout-manager/db db:generate",
     "db:migrate": "pnpm --filter @workout-manager/db db:migrate",
     "db:seed": "pnpm --filter @workout-manager/db db:seed"
