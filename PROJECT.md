@@ -119,7 +119,7 @@ pnpm dev              # Start API on http://localhost:3001
 - [x] Database schema (Drizzle + SQLite)
 - [x] Migrations & seed script
 - [x] Hono API with exercises, workouts, sessions routes
-- [ ] Next.js frontend
+- [x] Next.js frontend (shell, routing, API client)
 - [ ] Workout planning UI
 - [ ] Guided workout session UI
 - [ ] Workout history UI

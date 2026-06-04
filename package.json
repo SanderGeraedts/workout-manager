@@ -4,7 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "pnpm --filter @workout-manager/api dev",
+    "dev": "pnpm --filter @workout-manager/api dev & pnpm --filter web dev",
+    "dev:api": "pnpm --filter @workout-manager/api dev",
+    "dev:web": "pnpm --filter web dev",
     "build": "pnpm -r build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "db:generate": "pnpm --filter @workout-manager/db db:generate",
