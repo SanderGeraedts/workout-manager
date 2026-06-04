@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Barbell Bench Press",
+    "explanation": "Lie on a flat bench, grip the barbell slightly wider than shoulder-width. Lower the bar to your chest, then press up to full arm extension.",
+    "video_url": null,
+    "muscles": ["chest", "triceps", "anterior deltoid"]
+  },
+  {
+    "name": "Barbell Squat",
+    "explanation": "Place the barbell on your upper back. Bend at hips and knees to lower until thighs are parallel to the floor, then drive back up.",
+    "video_url": null,
+    "muscles": ["quadriceps", "glutes", "hamstrings"]
+  },
+  {
+    "name": "Deadlift",
+    "explanation": "Stand with feet hip-width apart, grip the bar outside your knees. Drive through your feet, extending hips and knees simultaneously.",
+    "video_url": null,
+    "muscles": ["hamstrings", "glutes", "lower back", "traps"]
+  },
+  {
+    "name": "Overhead Press",
+    "explanation": "Standing with barbell at shoulder height, press the bar overhead to full lockout, then lower back to shoulders.",
+    "video_url": null,
+    "muscles": ["anterior deltoid", "lateral deltoid", "triceps"]
+  },
+  {
+    "name": "Barbell Row",
+    "explanation": "Hinge at the hips with a slight knee bend. Pull the barbell from hanging position to your lower chest/upper abdomen.",
+    "video_url": null,
+    "muscles": ["lats", "rhomboids", "biceps", "rear deltoid"]
+  },
+  {
+    "name": "Pull-up",
+    "explanation": "Hang from a bar with overhand grip. Pull yourself up until your chin clears the bar, then lower with control.",
+    "video_url": null,
+    "muscles": ["lats", "biceps", "rear deltoid"]
+  },
+  {
+    "name": "Plank",
+    "explanation": "Hold a push-up position on your forearms, keeping your body in a straight line from head to heels.",
+    "video_url": null,
+    "muscles": ["core", "anterior deltoid"]
+  },
+  {
+    "name": "Dumbbell Lunges",
+    "explanation": "Hold dumbbells at your sides. Step forward, lowering your back knee toward the floor, then push back to standing.",
+    "video_url": null,
+    "muscles": ["quadriceps", "glutes", "hamstrings"]
+  }
+]
