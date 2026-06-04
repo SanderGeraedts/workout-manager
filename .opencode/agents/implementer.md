@@ -1,7 +1,7 @@
 ---
 description: Implements code changes based on a task plan. Writes code, creates files, runs commands. Uses a fast model for efficient execution.
 mode: subagent
-model: github-copilot/claude-sonnet-4
+model: github-copilot/claude-sonnet-4.6
 hidden: true
 permission:
   edit: allow

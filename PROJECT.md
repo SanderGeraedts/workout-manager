@@ -123,3 +123,50 @@ pnpm dev              # Start API on http://localhost:3001
 - [ ] Workout planning UI
 - [ ] Guided workout session UI
 - [ ] Workout history UI
+
+## UI Design — Workout Planner
+
+### Layout Overview
+
+The workout planner page is split into two vertical sections:
+
+**Top section — Workout Builder (full width)**
+- A list of exercises added to the current workout
+- Rows are **drag-and-drop reorderable** (vertical DnD)
+- Each row displays:
+  - Exercise name
+  - Sets count input
+  - Toggle: **reps-based** or **time-based** (per exercise — a workout can mix both)
+  - Reps input (if reps-based) or duration input in seconds (if time-based)
+  - Rest time input (seconds between sets)
+  - Remove button
+- Consider collapsed rows by default with an expand/edit affordance to reduce visual noise
+
+**Bottom section — Exercise Browser (split: left + right)**
+
+_Left panel — Exercise List_
+- Scrollable list/grid of all exercises from the library
+- **Text search** bar to filter by exercise name
+- Each exercise card shows name and muscle group tags
+- Clicking an exercise adds it to the workout builder above
+- The list is filtered when a muscle is selected on the right panel
+
+_Right panel — Muscle Map_
+- Uses **`react-body-highlighter`** (npm: `react-body-highlighter`) — a React SVG body model component
+- Render two `<Model>` instances side by side: `type="anterior"` (front) and `type="posterior"` (back)
+- Pass current workout exercises as the `data` prop: `{ name, muscles[] }` per exercise
+- Muscle groups are color-coded based on workout focus (set via `highlightedColors` prop):
+  - **White / light grey** (`bodyColor`) — not targeted
+  - **Green** — lightly targeted (frequency 1–2)
+  - **Orange** — moderately targeted
+  - **Red** — heavily targeted / most focused
+  - Suggested: `highlightedColors: ['#22c55e', '#86efac', '#f97316', '#ef4444']`
+- A small legend below the models explains the color scale
+- Clicking a muscle triggers the `onClick` callback → filters the exercise list on the left
+- Active muscle filter is visually indicated; clicking again deselects (shows all exercises)
+
+### Key Interactions
+- Drag handle on each workout row for reordering
+- Muscle click toggles filter on/off (deselect to show all)
+- Rep/time toggle switches input field type inline
+- Exercise cards have a quick-add button (+ icon) for fast addition

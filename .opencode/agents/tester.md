@@ -1,7 +1,7 @@
 ---
 description: Writes tests and verifies implementation correctness. Runs test suites, checks for regressions, and validates the implementer's work.
 mode: subagent
-model: github-copilot/claude-sonnet-4
+model: github-copilot/claude-sonnet-4.6
 hidden: true
 permission:
   edit: allow

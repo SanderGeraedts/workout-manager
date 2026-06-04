@@ -1,7 +1,7 @@
 ---
 description: UI/UX designer for creating beautiful, accessible interfaces with Tailwind CSS
 mode: primary
-model: github-copilot/claude-sonnet-4
+model: github-copilot/claude-sonnet-4.6
 permission:
   edit: allow
   bash: deny
